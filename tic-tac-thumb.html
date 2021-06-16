@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Tic-Tac-Thumb
+        </title>
+        <style media="screen">
+            @font-face {
+              font-family: "Kata";
+              src: url("fonts/851CHIKARA-DZUYOKU_kanaA_004.ttf");
+            }
+            </style>
+        <link rel="stylesheet" href="source/style.css">
+    </head>
+    <body onload="drawBoard()">
+        <div class="block" id="title">
+            <h1>サンモクナチベ ー アルティメト</h1>
+            <h3>Tic-Tac-Thumb ー Ultimate</h3>
+        </div>
+        <div class="block" id="mainSection">
+            <div class="block" id="gameBoard">
+            </div>
+        </div>
+        <div class="block">
+            <button onclick="StartGame()"> プレイ </button>
+        </div>
+        <script src="source/logic.js"></script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Kata;
+}
+
+.block {
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    text-align: center; 
+}
+
+#title {
+    height: 200px;
+    width: 100%;
+    float: left;
+    padding-top: 20px;
+    font-size: 3em;
+}
+
+#mainSection {
+    height: 510px;
+    width: 100%;
+    float: left;
+}
+
+#gameBoard {
+    height: 504px;
+    width: 504px;
+}
+
+.row {
+    height: 168px;
+    width: 504px;
+}
+
+.cell {
+    float: left;
+    height: 168px;
+    width: 168px;
+    background-image: url(graphics/blank.svg);
+}
