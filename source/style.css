@@ -20,7 +20,7 @@
 }
 
 #mainSection {
-    height: 510px;
+    height: auto;
     width: 100%;
     float: left;
 }
