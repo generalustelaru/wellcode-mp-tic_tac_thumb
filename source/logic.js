@@ -1,5 +1,5 @@
-var boardSize = 3, gameEnd = boardSize * boardSize;
-var gameState = false, gameTurn = 1, activePlayer = "x";
+var boardSize = 3, totalTurns = boardSize * boardSize;
+var gameState = false, gameTurn, activePlayer;
 var cellMonitor = new Map();
 function drawBoard() {
     let board = document.getElementById("gameBoard");
@@ -20,8 +20,26 @@ function drawBoard() {
         board.appendChild(row);
     }
 }
+
 function StartGame() {
-    gameState = true;
+    let keyIterator = cellMonitor.keys();
+    for (let i = 0; i < totalTurns; i++) {
+        cell = document.getElementById(keyIterator.next().value);
+        cell.style.backgroundImage="url(graphics/start-up.svg)";
+    }   
+    setTimeout(clear, 500);
+    function clear() {
+        let keyIterator = cellMonitor.keys();
+        for (let i = 0; i < totalTurns; i++) {
+            let nextKey = keyIterator.next().value;
+            cell = document.getElementById(nextKey);
+            cell.style.backgroundImage="url(graphics/blank.svg)";
+            cellMonitor.set(nextKey, "blank");
+        }
+        gameState = true;
+        gameTurn = 1;
+        activePlayer = "x";
+    }
 }
 
 function hover(id) {
@@ -45,6 +63,7 @@ function select(id) {
         assertMove(id);
     }
 }
+
 function assertMove(id) {
     let coords = parseInt(id);
     let x = Math.floor(coords / 10), y = coords % 10;
@@ -53,7 +72,10 @@ function assertMove(id) {
         gameState = false;
     } else {
         gameTurn++;
-        if (gameTurn % 2 == 0) {
+        if (gameTurn > totalTurns) {
+            alert("It's a draw.");
+            gameState = false;
+        } else if (gameTurn % 2 == 0) {
             activePlayer = "0";
         } else {
             activePlayer = "x";
@@ -78,6 +100,7 @@ function dashVictory(x) {
     }
     return true;
 }
+
 function barVictory(y) {
 
     for (let x = 1; x <= boardSize; x++) {
@@ -87,6 +110,7 @@ function barVictory(y) {
     }
     return true;
 }
+
 function slashVictory() {
     let x = boardSize, y = 1;
     for (let slash = 0; slash < boardSize; slash++) {
@@ -98,6 +122,7 @@ function slashVictory() {
     }
     return true;
 }
+
 function backSlashVictory() {
     let x = 1, y = 1;
     for (let slash = 0; slash < boardSize; slash++) {
